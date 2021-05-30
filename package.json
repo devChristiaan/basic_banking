@@ -1,10 +1,10 @@
 {
-  "name": "basic_banking",
-  "version": "1.0.0",
+  "name": "basic_banking_app",
+  "version": "0.1.0",
   "description": "Basic banking portal",
   "main": "app.js",
   "scripts": {
-    "start": "node ./app.js"
+    "start": "node ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/devChristiaan/basic_banking/issues"
   },
-  "homepage": "https://github.com/devChristiaan/basic_banking#readme"
+  "homepage": "https://github.com/devChristiaan/basic_banking#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
