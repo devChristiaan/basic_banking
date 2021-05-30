@@ -1,0 +1,19 @@
+{
+  "name": "basic_banking",
+  "version": "1.0.0",
+  "description": "Basic banking portal",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devChristiaan/basic_banking.git"
+  },
+  "author": "devChristiaan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devChristiaan/basic_banking/issues"
+  },
+  "homepage": "https://github.com/devChristiaan/basic_banking#readme"
+}
