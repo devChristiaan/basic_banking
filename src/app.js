@@ -5,12 +5,20 @@ const express = require('express')
 
 const app = express()
 
-//Setup basic func of app
+//Setup of static files
 app.set('views', path.join(__dirname, './views'))
+app.use(express.static(path.join(__dirname, 'public')))
 
+//Views Engine
 app.set('view engine', 'ejs')
 
-app.use(express.static(path.join(__dirname, 'public')))
+//Parse Json
+app.use(express.json())
+
+function getAccounts () {
+  const accountData = fs.readFileSync(path.join(__dirname, './json/accounts.json'), 'utf8')
+  const accounts =JSON.parse(accountData)
+}
 
 
 ///Main Routes
