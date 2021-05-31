@@ -1,6 +1,8 @@
-<%- include('header, {title:tile}'); -%>
+<%- include('./header.ejs', {title:title}) -%>
 <div class="container">
-  <h1><%= header.title %></h1>
+  <h1><%= title %></h1>
   <a href="/profile">Profile</a>
 </div>
-<%- include('footer'); -%>
+<br>
+<a href="/transfer">Transfer</a>
+<%- include('./footer.ejs'); -%>
