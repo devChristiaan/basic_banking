@@ -15,11 +15,19 @@ app.set('view engine', 'ejs')
 //Parse Json
 app.use(express.json())
 
+//Read account Data
 function getAccounts () {
   const accountData = fs.readFileSync(path.join(__dirname, './json/accounts.json'), 'utf8')
   const accounts =JSON.parse(accountData)
+  return accounts
 }
 
+//Read User Data
+function getUser () {
+  const userData = fs.readFileSync(path.join(__dirname, './json/users.json'), 'utf8')
+  const users = JSON.parse(userData)
+  return users
+}
 
 ///Main Routes
 app.get('/', (req,res) =>{
