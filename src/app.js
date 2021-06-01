@@ -18,7 +18,7 @@ app.use(express.json())
 //Read account Data
 function getAccounts () {
   const accountData = fs.readFileSync(path.join(__dirname, './json/accounts.json'), 'utf8')
-  const accounts =JSON.parse(accountData)
+  const accounts = JSON.parse(accountData)
   return accounts
 }
 
@@ -29,9 +29,19 @@ function getUser () {
   return users
 }
 
-///Main Routes
+///Main Routes -- Summary view
 app.get('/', (req,res) =>{
-  res.render('index', {title: 'Index'})
+  const accounts = getAccounts()
+  res.render('index', {title: 'Account Summary',
+accounts: accounts})
+})
+
+//
+
+//Savings AC route
+app.get('/savngs', (req,res) =>{
+  const accounts = getAccounts()
+  res.render('index', {accounts: accounts.savings})
 })
 
 //Server
