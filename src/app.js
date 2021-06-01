@@ -16,22 +16,22 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 
 //Read account Data
-async function getAccounts () {
-  const accountData = fs.readFile(path.join(__dirname, './json/accounts.json'), 'utf8')
+function getAccounts () {
+  const accountData = fs.readFileSync(path.join(__dirname, './json/accounts.json'), 'utf8')
   const accounts = JSON.parse(accountData)
   return accounts
 }
 
 //Read User Data
-async function getUser () {
-  const userData = fs.readFile(path.join(__dirname, './json/users.json'), 'utf8')
+function getUser () {
+  const userData = fs.readFileSync(path.join(__dirname, './json/users.json'), 'utf8')
   const users = JSON.parse(userData)
   return users
 }
 
 ///Main Routes -- Summary view
 app.get('/', (req,res) =>{
-  const accounts = await getAccounts()
+  const accounts = getAccounts()
   res.render('index', {title: 'Account Summary',
 accounts: accounts})
 })
@@ -40,7 +40,7 @@ accounts: accounts})
 
 //Savings AC route
 app.get('/savngs', (req,res) =>{
-  const accounts = await getAccounts()
+  const accounts = getAccounts()
   res.render('index', {accounts: accounts.savings})
 })
 
