@@ -39,9 +39,20 @@ accounts: accounts})
 //
 
 //Savings AC route
-app.get('/savngs', (req,res) =>{
+app.get('/savings', (req,res) =>{
   const accounts = getAccounts()
   res.render('index', {accounts: accounts.savings})
+})
+
+//CHQ AC route
+app.get('/checking', (req,res) =>{
+  const accounts = getAccounts()
+  res.render('index', {accounts: accounts.checking})
+})
+//CC AC route
+app.get('/credit', (req,res) =>{
+  const accounts = getAccounts()
+  res.render('index', {accounts: accounts.credit})
 })
 
 //Server
