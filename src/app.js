@@ -2,6 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const { get } = require('http')
 
 const app = express()
 
@@ -34,6 +35,12 @@ app.get('/', (req,res) =>{
   const accounts = getAccounts()
   res.render('index', {title: 'Account Summary',
 accounts: accounts})
+})
+
+//Profile view
+app.get('/profile', (req,res) =>{
+  const user = getUser()
+  res.render('profile', {user: users[0]})
 })
 
 //Savings AC route
