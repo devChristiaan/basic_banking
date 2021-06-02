@@ -36,8 +36,6 @@ app.get('/', (req,res) =>{
 accounts: accounts})
 })
 
-//
-
 //Savings AC route
 app.get('/savings', (req,res) =>{
   const accounts = getAccounts()
