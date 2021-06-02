@@ -1,4 +1,4 @@
-<% - include(header) %>
+<%- include("header.ejs") -%>
 <h1>Profile</h1>
 <div>
   <p><%= user.name %></p>
@@ -8,6 +8,6 @@
   <p>$<%= user.address %></p>
 </div>
 <br>
-<a href="localhost:3000">Back to account summary</a>
+<a href="/">Back to account summary</a>
 
-<%- include(footer)%>
+<%- include("footer") -%>

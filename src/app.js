@@ -40,7 +40,8 @@ accounts: accounts})
 //Profile view
 app.get('/profile', (req,res) =>{
   const user = getUser()
-  res.render('profile', {user: users[0]})
+  console.log(user);
+  res.render('profile', {user: user[0]})
 })
 
 //Savings AC route
