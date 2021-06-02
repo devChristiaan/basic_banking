@@ -17,7 +17,7 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 
 //Encode URL data
-app.use(express.urlencoded(extended))
+app.use(express.urlencoded({extended: true}))
 
 //Read account Data
 function getAccounts () {
@@ -61,6 +61,11 @@ app.get('/checking', (req,res) =>{
 app.get('/credit', (req,res) =>{
   const accounts = getAccounts()
   res.render('index', {accounts: accounts.credit})
+})
+
+//Transfer route
+app.get('/transfer', (req, res) => {
+  res.render('transfer')
 })
 
 //Server
