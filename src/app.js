@@ -40,7 +40,6 @@ accounts: accounts})
 //Profile view
 app.get('/profile', (req,res) =>{
   const user = getUser()
-  console.log(user);
   res.render('profile', {user: user[0]})
 })
 
