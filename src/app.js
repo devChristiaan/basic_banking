@@ -16,6 +16,9 @@ app.set('view engine', 'ejs')
 //Parse Json
 app.use(express.json())
 
+//Encode URL data
+app.use(express.urlencoded(extended))
+
 //Read account Data
 function getAccounts () {
   const accountData = fs.readFileSync(path.join(__dirname, './json/accounts.json'), 'utf8')
