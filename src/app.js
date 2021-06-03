@@ -63,8 +63,18 @@ app.get('/credit', (req,res) =>{
   res.render('index', {accounts: accounts.credit})
 })
 
-//Transfer route
+//Transfer route GET
 app.get('/transfer', (req, res) => {
+  res.render('transfer')
+})
+
+//Calculate new balance after transfer
+function calculateBalancesFromTransfer(fromAmount, amount) {
+  return newBalance = fromAmount - amount
+}
+
+//Transfer route POST
+app.post('/transfer', (req, res) => {
   res.render('transfer')
 })
 
