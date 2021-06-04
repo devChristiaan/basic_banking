@@ -2,7 +2,9 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
-const { get } = require('http')
+
+//Data
+const { accounts, users, writeJSON } = require('./data.js');
 
 const app = express()
 
@@ -16,49 +18,59 @@ app.set('view engine', 'ejs')
 //Parse Json
 app.use(express.json())
 
-//Read account Data
-function getAccounts () {
-  const accountData = fs.readFileSync(path.join(__dirname, './json/accounts.json'), 'utf8')
-  const accounts = JSON.parse(accountData)
-  return accounts
-}
+//Encode URL data
+app.use(express.urlencoded({extended: true}))
 
-//Read User Data
-function getUser () {
-  const userData = fs.readFileSync(path.join(__dirname, './json/users.json'), 'utf8')
-  const users = JSON.parse(userData)
-  return users
-}
 
 ///Main Routes -- Summary view
-app.get('/', (req,res) =>{
-  const accounts = getAccounts()
-  res.render('index', {title: 'Account Summary',
-accounts: accounts})
-})
+app.get('/', (req,res) => res.render('index', {title: 'Account Summary', accounts: accounts}))
 
 //Profile view
-app.get('/profile', (req,res) =>{
-  const user = getUser()
-  res.render('profile', {user: user[0]})
-})
+app.get('/profile', (req,res) => res.render('profile', {user: users[0]}))
 
 //Savings AC route
-app.get('/savings', (req,res) =>{
-  const accounts = getAccounts()
-  res.render('index', {accounts: accounts.savings})
-})
+app.get('/savings', (req,res) => res.render('index', {accounts: accounts.savings}))
 
 //CHQ AC route
-app.get('/checking', (req,res) =>{
-  const accounts = getAccounts()
-  res.render('index', {accounts: accounts.checking})
-})
+app.get('/checking', (req,res) => res.render('index', {accounts: accounts.checking}))
+
 //CC AC route
-app.get('/credit', (req,res) =>{
-  const accounts = getAccounts()
-  res.render('index', {accounts: accounts.credit})
+app.get('/credit', (req,res) => res.render('index', {accounts: accounts.credit}))
+
+//Transfer route GET
+app.get('/transfer', (req, res) => res.render('transfer'))
+
+
+//Transfer route POST
+app.post('/transfer', (req, res) => {
+  accounts[req.body.from].balance -= req.body.amount
+  accounts[req.body.to].balance += parseInt(req.body.amount, 10)
+
+  writeJSON();
+
+  res.render('transfer', {message: "Transfer Completed"})
 })
+
+//Credit Route
+app.get('/payment', (req, res) => res.render('payment', {account: accounts.credit}))
+
+//Transfer route POST
+app.post('/payment', (req, res) => {
+  accounts[req.body.from].balance -= req.body.amount
+  accounts[req.body.to].balance += parseInt(req.body.amount, 10)
+
+  writeJSON();
+
+  res.render('transfer', {message: "Transfer Completed"})
+})
+
+//Payment tranfer route
+app.post('/payment', (req, res) => {
+  accounts.credit.balance -= req.body.amount;
+  accounts.credit.available += parseInt(req.body.amount);
+  writeJSON();
+  res.render('payment', {message: 'Payment Successful', account: accounts.credit});
+});
 
 //Server
 app.listen(3000, () =>{
