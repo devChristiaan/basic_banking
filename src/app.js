@@ -25,6 +25,10 @@ app.use(express.urlencoded({extended: true}))
 const accountRoutes = require("./routes/accounts.js")
 const servicesRoutes = require("./routes/services.js")
 
+//Call routes
+app.use("/account", accountRoutes)
+app.use("/services", servicesRoutes)
+
 //Server
 app.listen(3000, () =>{
   console.log("Server is running on localhost:3000");
