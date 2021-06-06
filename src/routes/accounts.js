@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { ... accounts } = require("../data.js")
+const { accounts } = require("../data.js")
 
 ///Main Routes -- Summary view
 router.get('/', (req,res) => res.render('index', {title: 'Account Summary', accounts: accounts}))
