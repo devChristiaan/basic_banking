@@ -8,6 +8,10 @@ const { accounts, users, writeJSON } = require('./data.js');
 
 const app = express()
 
+//Routes
+const accountRoutes = require("./routes/accounts.js")
+const servicesRoutes = require("./routes/services.js")
+
 //Setup of static files
 app.set('views', path.join(__dirname, './views'))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -26,10 +30,6 @@ app.get('/', (req,res) => res.render('index', {title: 'Account Summary', account
 
 //Profile view
 app.get('/profile', (req,res) => res.render('profile', {user: users[0]}))
-
-//Routes
-const accountRoutes = require("./routes/accounts.js")
-const servicesRoutes = require("./routes/services.js")
 
 //Call routes
 app.use("/account", accountRoutes)

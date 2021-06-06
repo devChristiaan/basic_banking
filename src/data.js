@@ -13,7 +13,7 @@ const users = JSON.parse(userData)
 
 //Write account Data
 const writeJSON = () => {
-  let accountsJSON = JSON.stringify(account, null, 4)
+  let accountsJSON = JSON.stringify(accounts, null, 4)
   fs.writeFileSync(path.join(__dirname, 'json', 'accounts.json'), 'accountsJSON' ,'utf8')
 }
 
