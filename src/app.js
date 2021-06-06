@@ -21,6 +21,9 @@ app.use(express.json())
 //Encode URL data
 app.use(express.urlencoded({extended: true}))
 
+///Main Routes -- Summary view
+app.get('/', (req,res) => res.render('index', {title: 'Account Summary', accounts: accounts}))
+
 //Routes
 const accountRoutes = require("./routes/accounts.js")
 const servicesRoutes = require("./routes/services.js")
