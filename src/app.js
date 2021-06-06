@@ -24,6 +24,9 @@ app.use(express.urlencoded({extended: true}))
 ///Main Routes -- Summary view
 app.get('/', (req,res) => res.render('index', {title: 'Account Summary', accounts: accounts}))
 
+//Profile view
+app.get('/profile', (req,res) => res.render('profile', {user: users[0]}))
+
 //Routes
 const accountRoutes = require("./routes/accounts.js")
 const servicesRoutes = require("./routes/services.js")
@@ -34,5 +37,5 @@ app.use("/services", servicesRoutes)
 
 //Server
 app.listen(3000, () =>{
-  console.log("Server is running on localhost:3000");
+  console.log("Server is running on http://localhost:3000");
 })

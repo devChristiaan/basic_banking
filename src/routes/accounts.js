@@ -3,9 +3,6 @@ const router = express.Router()
 
 const { accounts } = require("../data.js")
 
-///Main Routes -- Summary view
-router.get('/', (req,res) => res.render('index', {title: 'Account Summary', accounts: accounts}))
-
 //Profile view
 router.get('/profile', (req,res) => res.render('profile', {user: users[0]}))
 
