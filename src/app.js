@@ -21,6 +21,10 @@ app.use(express.json())
 //Encode URL data
 app.use(express.urlencoded({extended: true}))
 
+//Routes
+const accountRoutes = require("./routes/accounts.js")
+const servicesRoutes = require("./routes/services.js")
+
 //Server
 app.listen(3000, () =>{
   console.log("Server is running on localhost:3000");
